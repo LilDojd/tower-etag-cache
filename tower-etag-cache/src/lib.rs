@@ -98,7 +98,7 @@ impl<ReqBody, ResBody, C, P, S> Service<http::Request<ReqBody>> for EtagCache<C,
 where
     C: CacheProvider<ReqBody, ResBody> + Clone,
     P: PassthroughPredicate,
-    S: Service<http::Request<ReqBody>, Response = http::Response<ResBody>> + Clone,
+    S: Service<http::Request<ReqBody>, Response = http::Response<ResBody>> + Clone + Send + 'static,
 {
     type Response = http::Response<EtagCacheResBody<ResBody, C::TResBody>>;
 

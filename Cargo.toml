@@ -1,12 +1,9 @@
 [workspace]
 resolver = "2"
-members = [
-  "tower-etag-cache",
-  "examples/*"
-]
+members = ["tower-etag-cache", "examples/*"]
 
 [workspace.dependencies]
-ammonia = "^3"
+ammonia = "^4"
 axum = "^0.7"
 blake3 = "^1.5"
 bytes = "^1.5"
@@ -17,16 +14,16 @@ http-body = "^1.0"
 http-body-util = "0.1.0"
 hyper = "^1.1"
 lazy_static = "^1"
-minijinja = { version = "^1.0", default-features = false }
-minijinja-autoreload = "^1.0"
+minijinja = { version = "^2.0", default-features = false }
+minijinja-autoreload = "^2.0"
 pin-project = "^1.1"
 num-traits = "^0.2"
 serde = "^1"
 time = "^0.3"
 tokio = "^1.35"
 tokio-util = "^0.7"
-tower = "^0.4"
-tower-http = "^0.5"
+tower = { version = "^0.5", features = ["util"] }
+tower-http = { version = "^0.5", features = ["map-response-body"] }
 tower-layer = "^0.3"
 tower-service = "^0.3"
 tracing = "^0.1"
