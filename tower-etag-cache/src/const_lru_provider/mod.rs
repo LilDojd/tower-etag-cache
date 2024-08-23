@@ -2,7 +2,7 @@
 
 use const_lru::ConstLru;
 use http::{
-    header::{ETAG, IF_NONE_MATCH, LAST_MODIFIED},
+    header::{CACHE_CONTROL, ETAG, IF_NONE_MATCH, LAST_MODIFIED},
     HeaderMap, HeaderValue,
 };
 use http_body::Body;
@@ -201,6 +201,10 @@ where
         last_modified_val: SystemTime,
     ) {
         headers_mut.append(ETAG, etag_val);
+        headers_mut.append(
+            CACHE_CONTROL,
+            HeaderValue::from_static("max-age=604800,stale-while-revalidate=86400"),
+        );
         let last_modified_val = OffsetDateTime::from(last_modified_val)
             .format(&Rfc2822)
             .unwrap();
