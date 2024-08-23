@@ -10,5 +10,5 @@ pub fn base64_blake3_body_etag(body: impl AsRef<[u8]>) -> HeaderValue {
     let bytes = hasher.finalize();
     let val = BASE64.encode(bytes.as_bytes());
     // unwrap-safety: base64 should be always valid ascii
-    HeaderValue::from_str(&val).unwrap()
+    HeaderValue::from_str(&format!(r#""{val}""#)).unwrap()
 }
