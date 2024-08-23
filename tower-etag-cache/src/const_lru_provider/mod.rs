@@ -203,7 +203,7 @@ where
         headers_mut.append(ETAG, etag_val);
         headers_mut.append(
             CACHE_CONTROL,
-            HeaderValue::from_static("max-age=604800,stale-while-revalidate=86400"),
+            HeaderValue::from_static("max-age=0, must-revalidate"),
         );
         let last_modified_val = OffsetDateTime::from(last_modified_val)
             .format(&Rfc2822)
